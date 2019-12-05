@@ -89,9 +89,21 @@ function bid() {
       };
   }
 
-  //delete item from the table after successful bidding
+  //delete the item from the table after successful bidding
   function delItem(id) {
     connection.query("DELETE FROM itemList where id = ?", [id], function(
+      error,
+      results,
+      fields
+    ) {
+      if (error) throw error;
+      console.log(results);
+    });
+  }
+
+  //get item's price
+  function getPrice(id) {
+    connection.query("SELECT price FROM itemList WHERE id = ?", [id], function(
       error,
       results,
       fields
