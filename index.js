@@ -77,4 +77,27 @@ function bid() {
           console.log(answers.price);
         });
     });
+
+  //mySQL functions queries
+
+  //list of all items available for bidding
+  function getItems() {
+    connection.query("SELECT item FROM itemList "),
+      function(error, results, fields) {
+        if (error) throw error;
+        console.log(results);
+      };
+  }
+
+  //delete item from the table after successful bidding
+  function delItem(id) {
+    connection.query("DELETE FROM itemList where id = ?", [id], function(
+      error,
+      results,
+      fields
+    ) {
+      if (error) throw error;
+      console.log(results);
+    });
+  }
 }
